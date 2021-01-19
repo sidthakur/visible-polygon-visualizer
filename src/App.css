@@ -4,3 +4,9 @@
   height: 100vh;
   overflow-y: hidden;
 }
+
+.Play-Button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}

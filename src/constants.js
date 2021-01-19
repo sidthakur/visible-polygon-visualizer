@@ -10,4 +10,20 @@ const defaultCameraState = {
     perspective: true
 }
 
-export {sensorHeight, sensorRollAngle, defaultCameraState}
+// Animation
+const startFrameNo = 8209;
+const lastFrameNo = 8587;
+const timePerFrame = 33;
+const legoCarDisplacementPerFrame = 0.1;
+const legoCarPauseFrame = 8475;
+
+export {
+    sensorHeight,
+    sensorRollAngle,
+    defaultCameraState,
+    startFrameNo,
+    lastFrameNo,
+    timePerFrame,
+    legoCarDisplacementPerFrame,
+    legoCarPauseFrame
+}

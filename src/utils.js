@@ -67,4 +67,8 @@ function formatGroundPolygons(polygons) {
     });
 }
 
-export {cubesToLines, formatGroundPolygons};
+function getGroundPolygonURL(frameNo) {
+    return "/ground-polygons/frame_0" + String(frameNo) + ".json";
+}
+
+export {cubesToLines, formatGroundPolygons, getGroundPolygonURL};
