@@ -71,4 +71,8 @@ function getGroundPolygonURL(frameNo) {
     return "/ground-polygons/frame_0" + String(frameNo) + ".json";
 }
 
-export {cubesToLines, formatGroundPolygons, getGroundPolygonURL};
+function getPlottedImageURL(frameNo) {
+    return "/plotted-images/frame_0" + String(frameNo) + ".jpeg";
+}
+
+export {cubesToLines, formatGroundPolygons, getGroundPolygonURL, getPlottedImageURL};

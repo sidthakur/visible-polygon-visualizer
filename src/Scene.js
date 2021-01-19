@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Worldview, Grid, Cubes, Lines, FilledPolygons, GLTFScene} from "regl-worldview";
-import {cubesToLines, formatGroundPolygons, getGroundPolygonURL} from "./utils";
+import {cubesToLines, formatGroundPolygons, getGroundPolygonURL, getPlottedImageURL} from "./utils";
 import {table, leftBox, rightBox, sensor, sensorStand} from "./fixedObjects";
 import {legoCarModel, legoCar} from "./legoCar";
 import {
@@ -21,6 +21,7 @@ let previousLegoCarDisplacement = 0;
 function Scene() {
     const [groundPolygons, setGroundPolygons] = useState({});
     const [legoCarDisplacement, setLegoCarDisplacement] = useState(0);
+    const [imageFrameNo, setImageFrameNo] = useState(startFrameNo);
     const [animationDisabled, setAnimationDisabled] = useState(true);
     const onButtonClick = (e) => {
         setAnimationDisabled(!animationDisabled);
@@ -41,8 +42,10 @@ function Scene() {
                     return {}
                 })
                 .then((polygons) => {
-                    if ('groundPolygons' in polygons)
+                    if ('groundPolygons' in polygons) {
                         setGroundPolygons(polygons);
+                        setImageFrameNo(currentFrameNo);
+                    }
                 });
             if (currentFrameNo < legoCarPauseFrame) {
                 previousLegoCarDisplacement += legoCarDisplacementPerFrame;
@@ -51,7 +54,7 @@ function Scene() {
             previousFrameNo = currentFrameNo;
             previousFrameTime = timestamp;
         }
-    }, animationDisabled, [setGroundPolygons, setLegoCarDisplacement]);
+    }, animationDisabled, [setGroundPolygons, setLegoCarDisplacement, setImageFrameNo]);
     const cubesToPlot = [table, leftBox, rightBox, sensor, sensorStand];
     return (<Worldview defaultCameraState={defaultCameraState}>
         <Cubes>
@@ -68,6 +71,7 @@ function Scene() {
         </GLTFScene>
         <Grid/>
         <button className="Play-Button" onClick={onButtonClick}>{animationDisabled ? "Play" : "Pause"}</button>
+        <img src={getPlottedImageURL(imageFrameNo)} className="Plotted-Image" alt={"Loading..."}/>
     </Worldview>)
 }
 

@@ -10,3 +10,13 @@
   top: 10px;
   left: 10px;
 }
+
+.Plotted-Image {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 40vw;
+  height: 30vw;
+  border:1px solid black;
+  box-shadow: 2px 2px 5px black;
+}
